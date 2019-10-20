@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest>
+  <identifier>Toolkit - AlienVsPredator</identifier>
+  <version>1.20.0.6</version>
+  <dependencies>
+    <li>TwitchToolkit</li>
+  </dependencies>
+  <incompatibleWith />
+  <loadAfter>
+    <!-- <li>HugsLib</li>
+    <li>JecsTools</li>
+    <li>HumanoidAlienRaces2.0</li>
+    <li>LotR-TheThirdAge</li>
+    <li>LotR-Dwarves</li> -->
+    <li>TwitchToolkit</li>
+  </loadAfter>
+</Manifest>
