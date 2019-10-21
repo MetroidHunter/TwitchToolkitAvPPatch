@@ -1,55 +1,45 @@
 ﻿using RimWorld;
-using TwitchToolkit;
-using TwitchToolkit.Store;
-using Verse;
+using RRYautja;
 
-namespace ToolkitLordOfTheRimsPatch
+namespace ToolkitAlienVsPredatorPatch
 {
-    public class IncidentHelper_AncientDwarvenStronghold : IncidentHelper
+    public class IncidentHelper_UnknownShipImpact : WagerIncidentHelper<IncidentWorker_CrashedShip>
     {
-        private void Log(string msg)
-        {
-            Verse.Log.Message($"<color=#6441AF>[LOTRToolkit]</color> {msg}");
-        }
+        public IncidentHelper_UnknownShipImpact() : base(IncidentCategoryDefOf.ThreatBig, IncidentDef.Named("RRY_XenomorphCrashedShipPartCrash"), RaidStrategyDefOf.ImmediateAttack, PawnsArrivalModeDefOf.CenterDrop) { }
+    }
 
-        public override bool IsPossible()
-        {
-            Log("Checking if possible...");
-            worker = new Dwarves.IncidentWorker_AncientDwarvenStronghold();
-            worker.def = IncidentDef.Named("LotRD_QuestAncientStronghold");
+    public class IncidentHelper_HiveInfestation : WagerIncidentHelper<IncidentWorker_Hivelike>
+    {
+        public IncidentHelper_HiveInfestation() : base(IncidentCategoryDefOf.ThreatBig, IncidentDef.Named("RRY_XenomorphInfestation")) { }
+    }
 
-            Log($"Worker: {worker.def.ToString()}");
+    public class IncidentHelper_FriendlyXenoRaid : WagerIncidentHelper<IncidentWorker_RaidFriendly_FactionSpecific>
+    {
+        public IncidentHelper_FriendlyXenoRaid() : base(IncidentCategoryDefOf.AllyAssistance, IncidentDef.Named("RaidFriendly_FactionSpecific"), RaidStrategyDefOf.ImmediateAttack, PawnsArrivalModeDefOf.EdgeDrop) { }
+    }
 
-            Map map = Helper.AnyPlayerMap;
+    public class IncidentHelper_EnemyXenoRaid : WagerIncidentHelper<IncidentWorker_RaidEnemy_FactionSpecific>
+    {
+        public IncidentHelper_EnemyXenoRaid() : base(IncidentCategoryDefOf.ThreatBig, IncidentDef.Named("RRY_RaidEnemy_FactionSpecific"), RaidStrategyDefOf.ImmediateAttack, PawnsArrivalModeDefOf.EdgeWalkIn) { }
+    }
 
-            if (map != null)
-            {
-                parms = StorytellerUtility.DefaultParmsNow(IncidentCategoryDefOf.Misc, map);
+    public class IncidentHelper_StrangeFungusSprouts : NormalIncidentHelper<IncidentWorker_NeomorphFungusSprout>
+    {
+        public IncidentHelper_StrangeFungusSprouts() : base(IncidentCategoryDefOf.Misc, IncidentDef.Named("RRY_Neomorph_FungusSprout")) { }
+    }
 
-                int tileId = 0;
-                bool foundTile = IncidentWorker_AncientDwarvenStronghold.TryFindNewSiteTile(out tileId, 8, 30, false, true, -1);
-                Log($"Probably a good tile?: {foundTile} @ {tileId}");
-                Log($"Any strongholds?: {IncidentWorker_AncientDwarvenStronghold.AnyExistingStrongholds()}");
+    public class IncidentHelper_StrangeFungusSproutsSilent : NormalIncidentHelper<IncidentWorker_NeomorphFungusSprout>
+    {
+        public IncidentHelper_StrangeFungusSproutsSilent() : base(IncidentCategoryDefOf.Misc, IncidentDef.Named("RRY_Neomorph_FungusSprout_Hidden")) { }
+    }
 
-                Log($"Firing with params: {parms.ToString()}");
-                parms.forced = true;
-                bool canFire =  worker.CanFireNow(parms);
-                Log($"Can fire?: {canFire}");
-                return canFire;
-            }
+    public class IncidentHelper_PowerCutV1 : NormalIncidentHelper<IncidentWorker_PowerCut>
+    {
+        public IncidentHelper_PowerCutV1() : base(IncidentCategoryDefOf.Misc, IncidentDef.Named("RRY_PowerCut_Xenomorph")) { }
+    }
 
-            return false;
-        }
-
-        public override void TryExecute()
-        {
-            Log("Trying to execute...");
-            bool success = worker.TryExecute(parms);
-
-            Log($"Did execute? {success}");
-        }
-
-        private IncidentParms parms = null;
-        private IncidentWorker worker = null;
+    public class IncidentHelper_PowerCutV2 : NormalIncidentHelper<IncidentWorker_PowerCutP1>
+    {
+        public IncidentHelper_PowerCutV2() : base(IncidentCategoryDefOf.Misc, IncidentDef.Named("RRY_PowerCut_XenomorphV2")) { }
     }
 }

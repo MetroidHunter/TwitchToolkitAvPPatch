@@ -7,8 +7,8 @@
     <ProjectGuid>{18672BAC-E100-4769-8879-C6F06C9CB109}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ToolkitAlienVsPredator</RootNamespace>
-    <AssemblyName>ToolkitAlienVsPredator</AssemblyName>
+    <RootNamespace>ToolkitAlienVsPredatorPatch</RootNamespace>
+    <AssemblyName>ToolkitAlienVsPredatorPatch</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -53,12 +53,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IncidentHelpers.cs" />
+    <Compile Include="NormalIncidentHelper.cs" />
     <Compile Include="ToolkitAlienVsPredatorPatch.cs" />
+    <Compile Include="WagerIncidentHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\AlienVsPredator\Source\RRYautja\RRYautja.csproj">
+      <Project>{98fcbc2d-8ea4-42e6-a745-d691c3576586}</Project>
+      <Name>RRYautja</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\..\TwitchToolkit\TwitchToolkit\TwitchToolkit.csproj">
       <Project>{358d961a-2fb9-49a0-87bb-af72a4bc1d29}</Project>
       <Name>TwitchToolkit</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

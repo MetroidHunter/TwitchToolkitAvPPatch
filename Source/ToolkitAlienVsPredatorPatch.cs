@@ -1,6 +1,6 @@
 ﻿using Verse;
 
-namespace ToolkitLordOfTheRimsPatch
+namespace ToolkitAlienVsPredatorPatch
 {
     public class ToolkitAlienVsPredatorPatch : Mod
     {
